@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const currencySchema = new mongoose.Schema({
-  name: String,
-  date: String,
-  open: Number,
-  high: Number,
-  low: Number,
-  close: Number,
-  volume: String,
-  marketCap: String,
+  Currency: String,
+  Date: Date,
+  Open: Number,
+  High: Number,
+  Low: Number,
+  Close: Number,
+  Volume: String,
+  MarketCap: String,
 });
 
 const currencyModel = mongoose.model('Currency', currencySchema); //collection name

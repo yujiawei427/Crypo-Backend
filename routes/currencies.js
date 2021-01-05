@@ -11,8 +11,8 @@ const currencyRoutes = (app, fs) => {
     })
   });
 
-  app.get('/currencies/:name', (req, res) => {
-    Currency.find({name: req.params.name}, (err, currency) => {
+  app.get('/currencies/:currency', (req, res) => {
+    Currency.find({Date: req.params.currency}, (err, currency) => {
       if (err) {
         res.status(404);
         res.send('Currency not found');
@@ -25,24 +25,24 @@ const currencyRoutes = (app, fs) => {
     // create some events
     const currencies = [
         {
-          name: "tezos",
-          date: "Dec 19, 2019",
-          open: 1.29,
-          high: 1.32,
-          low: 1.25,
-          close: 1.25,
-          volume: "46,048,752",
-          marketCap: "824,588,509",
+          Currency: "tezos",
+          Date: "Dec 19, 2019",
+          Open: 1.29,
+          High: 1.32,
+          Low: 1.25,
+          Close: 1.25,
+          Volume: "46,048,752",
+          MarketCap: "824,588,509",
         },
         {
-          name: "bitcoin",
-          date: "Dec 19, 2019",
-          open: 7764.06,
-          high: 7836.10,
-          low: 7291.34,
-          close: 7424.29,
-          volume: "18,720,708,479",
-          marketCap: "134,215,145,410",
+          Currency: "bitcoin",
+          Date: "Dec 19, 2019",
+          Open: 7765.06,
+          High: 7836.10,
+          Low: 7291.34,
+          Close: 7424.29,
+          Volume: "18,720,708,479",
+          MarketCap: "134,215,145,410",
       }
     ];
 
@@ -65,14 +65,14 @@ const currencyRoutes = (app, fs) => {
   //create
   app.post('/currency', (req, res) => {
     let currency = new Currency( {
-      name: req.body.name,
-      date: req.body.date,
-      open: req.body.open,
-      high: req.body.high,
-      low: req.body.low,
-      close: req.body.close,
-      volume: req.body.volume,
-      marketCap: req.body.marketCap,
+      Currency: req.body.Currency,
+      Date: req.body.Date,
+      Open: req.body.Open,
+      High: req.body.High,
+      Low: req.body.Low,
+      Close: req.body.Close,
+      Volume: req.body.Volume,
+      MarketCap: req.body.MarketCap,
     });
     currency.save(err => {
       if(err) {
@@ -86,14 +86,14 @@ const currencyRoutes = (app, fs) => {
 //update
 app.put('/currencies/:currency', (req, res) => {
   Currency.updateOne({currency: req.params.currency}, {
-    currency: req.body.currency,
-    date: req.body.date,
-    open: req.body.open,
-    high: req.body.high,
-    low: req.body.low,
-    close: req.body.close,
-    volume: req.body.volume,
-    marketCap: req.body.marketCap,
+    Currency: req.body.Currency,
+    Date: req.body.Date,
+    Open: req.body.Open,
+    High: req.body.High,
+    Low: req.body.Low,
+    Close: req.body.Close,
+    Volume: req.body.Volume,
+    MarketCap: req.body.MarketCap,
   }, (err => {
     if(err) {
       console.log(err);
@@ -105,7 +105,7 @@ app.put('/currencies/:currency', (req, res) => {
 
   //delete
   app.delete('/currencies/:currency', (req, res) => {
-    Currency.deleteOne({currency: req.params.currency}, (err, currency) => {
+    Currency.deleteOne({Currency: req.params.currency}, (err, currency) => {
       if (err) {
         console.log(err);
         res.status(400).send('cannot delete currency');
