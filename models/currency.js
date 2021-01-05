@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const currencySchema = new mongoose.Schema({
   Currency: String,
   Date: Date,
-  Open: Number,
-  High: Number,
-  Low: Number,
-  Close: Number,
+  Open: String,
+  High: String,
+  Low: String,
+  Close: String,
   Volume: String,
   MarketCap: String,
 });
